@@ -19,8 +19,6 @@ const StatusBar = ({ stats }: StatusBarProps) => {
         return '💤';
       case 'fullness':
         return '🥩';
-      case 'friendliness':
-        return '🤝';
       default:
         return '';
     }
@@ -34,8 +32,19 @@ const StatusBar = ({ stats }: StatusBarProps) => {
         return '体力值';
       case 'fullness':
         return '饱腹感';
-      case 'friendliness':
-        return '友好度';
+      default:
+        return '';
+    }
+  };
+
+  const getStatIcon = (stat: keyof DogStats) => {
+    switch (stat) {
+      case 'happiness':
+        return '😊';
+      case 'energy':
+        return '⚡';
+      case 'fullness':
+        return '🥩';
       default:
         return '';
     }
