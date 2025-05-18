@@ -1,0 +1,27 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// 排行榜记录模型
+model LeaderboardEntry {
+  id        Int      @id @default(autoincrement())
+  ownerName String   // 遛狗人名字
+  dogName   String   // 狗狗名字
+  distance  Int      // 遛狗距离（米）
+  createdAt DateTime @default(now()) // 创建时间
+  updatedAt DateTime @updatedAt      // 更新时间
+
+  @@index([distance]) // 为距离创建索引，优化排序查询
+}
